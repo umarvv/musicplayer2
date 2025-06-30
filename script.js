@@ -37,27 +37,6 @@ async function searchAndPlay() {
     `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&limit=10`
   );
   const data = await response.json();
-
-  if (data.results.length > 0) {
-    currentResults = data.results;
-    currentIndex = 0;
-
-    // Musiqani o'ynatish
-    playSong(currentIndex);
-
-    // Video URL'ini o'rnatish (YouTube yoki boshqa manba bilan bog'lash)
-    const song = currentResults[currentIndex];
-    const videoUrl = `https://www.youtube.com/embed/${song.trackId}?autoplay=1&mute=1&loop=1&playlist=${song.trackId}`;
-
-    // Video fonini ko'rsatish
-    videoFrame.src = videoUrl;
-    videoBackground.style.display = "block";
-  } else {
-    title.textContent = "Hech narsa topilmadi 😔";
-    audio.src = "";
-    albumArt.style.display = "none";
-    videoBackground.style.display = "none";
-  }
 }
 
 function playSong(index) {
