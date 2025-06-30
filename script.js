@@ -37,6 +37,18 @@ async function searchAndPlay() {
     `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&limit=10`
   );
   const data = await response.json();
+
+  if (data.results.length > 0) {
+    currentResults = data.results;
+    currentIndex = 0;
+
+    playSong(currentIndex);
+  } else {
+    title.textContent = "Hech narsa topilmadi 😔";
+    audio.src = "";
+    albumArt.style.display = "none";
+    videoBackground.style.display = "none";
+  }
 }
 
 function playSong(index) {
